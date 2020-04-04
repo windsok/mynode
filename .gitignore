@@ -16,6 +16,9 @@ instance/
 # vscode
 .vscode/
 
+# PyCharm
+.idea/
+
 .DS_Store
 
 # Output (rootfs, etc...)

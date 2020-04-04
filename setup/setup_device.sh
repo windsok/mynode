@@ -38,6 +38,8 @@ elif [[ $MODEL == *"Raspberry Pi 3"* ]]; then
 elif [[ $MODEL == *"Raspberry Pi 4"* ]]; then
     IS_RASPI=1
     IS_RASPI4=1
+elif [[ $MODEL == *"Hardkernel Odroid XU4"* ]]; then
+    IS_ODROID_EXYNOS5=1
 fi
 
 if [ $IS_UNKNOWN = 1 ]; then
@@ -77,6 +79,8 @@ elif [ $IS_RASPI3 = 1 ]; then
     TARBALL="mynode_rootfs_raspi3.tar.gz"
 elif [ $IS_RASPI4 = 1 ]; then
     TARBALL="mynode_rootfs_raspi4.tar.gz"
+elif [ $IS_ODROID_EXYNOS5 = 1 ]; then
+    TARBALL="mynode_rootfs_debian.tar.gz"
 elif [ $IS_X86 = 1 ]; then
     TARBALL="mynode_rootfs_debian.tar.gz"
 fi
@@ -215,7 +219,7 @@ rm -rf /etc/update-motd.d/*
 # Install Bitcoin
 BTC_VERSION="0.19.1"
 ARCH="UNKNOWN"
-if [ $IS_RASPI = 1 ]; then
+if [ $IS_RASPI = 1 ] || [ $IS_ODROID_EXYNOS5 = 1 ]; then
     ARCH="arm-linux-gnueabihf"
 elif [ $IS_ROCK64 = 1 ] || [ $IS_ROCKPRO64 = 1 ]; then
     ARCH="aarch64-linux-gnu"
